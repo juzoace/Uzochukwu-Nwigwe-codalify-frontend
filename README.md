@@ -1,24 +1,20 @@
-# app
+## Exam by
 
-## Project setup
-```
-npm install
-```
+## Name
+Nwigwe Uzochukwu 
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Date Started 
+9/16/2023
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Date Ended
+9/19/2023
 
-### Lints and fixes files
-```
-npm run lint
-```
+## About the app
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ The front-end is built with Vue.js 
+
+## Running the app
+## Frontend
+1. First you need to move into the frontend directory and install dependencies using: npm install . Ensure you have the env setup according to sample.env
+
+2. To run the app simple use the command: 'npm run serve'

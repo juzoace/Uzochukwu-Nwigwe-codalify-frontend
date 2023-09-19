@@ -10,6 +10,10 @@
       <button type="button" @click="clearData" class="clear-button">Clear Data</button>
     </form>
 
+    <div v-if="isLoading">
+      <Spinner />
+    </div>
+
     <div id="channelContainer" v-if="channel">
       <div class="card">
         <h1 class="section-title">Channel Information</h1>
@@ -39,7 +43,9 @@
 </template>
 
 <script>
+
 import { syncYoutubeChannel } from './sync_youtube_channel';
+import Spinner from './Spinner.vue';
 
 export default {
   data() {
@@ -51,6 +57,7 @@ export default {
       currentPage: 1,
       videosPerPage: 20,
       message: "",
+      isLoading: false,
       isNoMoreVideos: false, // Added property to track no more videos
     };
   },
@@ -59,9 +66,13 @@ export default {
       return this.isNoMoreVideos || this.displayedVideos.length === this.videos.length;
     },
   },
+  components: {
+    Spinner, 
+  },
   methods: {
     async fetchData() {
       try {
+        this.isLoading = true; 
         const { channel, videos } = await syncYoutubeChannel(this.channelName);
         this.channel = channel;
         this.videos = videos;
@@ -69,9 +80,11 @@ export default {
         this.currentPage = 1;
         this.message = "";
         this.isNoMoreVideos = false; // Reset no more videos flag
+        this.isLoading = false;
       } catch (error) {
         console.error("There was an error:", error);
         this.message = "Error fetching data. Please use a valid channel name.";
+        this.isLoading = false; // Stop loading on error
       }
     },
     paginate() {

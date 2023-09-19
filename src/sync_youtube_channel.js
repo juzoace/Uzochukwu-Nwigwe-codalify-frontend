@@ -1,6 +1,6 @@
 export async function syncYoutubeChannel(channelName) {
 
-    const YOUTUBE_API_KEY = 'AIzaSyBOxsjNmhHPvRYRVXAx3BXmA7-YtlVWamQ'
+    const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY
 
         const localResponse = await fetch(`http://localhost:8000/api/youtube/${channelName}`, {
             method: 'GET',
