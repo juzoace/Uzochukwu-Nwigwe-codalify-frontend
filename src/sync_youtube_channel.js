@@ -1,14 +1,19 @@
 export async function syncYoutubeChannel(channelName) {
 
+    
+    const apiUrl = process.env.VUE_APP_API_BASE_URL;
+    const endpoint = '/api/youtube';
+    const fullUrl = `${apiUrl}${endpoint}`;
     const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY
+      
 
-        const localResponse = await fetch(`http://localhost:8000/api/youtube/${channelName}`, {
+        const localResponse = await fetch(fullUrl, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
             }
         });
-        
+        console.log(localResponse)
         if (localResponse.status === 200) {
            
             // Parse the JSON response to extract the data
@@ -26,6 +31,8 @@ export async function syncYoutubeChannel(channelName) {
                     'Accept': 'application/json'
                 }
             });
+
+            console.log(channelResponse);
 
             const channelDataJson = await channelResponse.json();
             
@@ -51,7 +58,7 @@ export async function syncYoutubeChannel(channelName) {
 
                 // console.log(dataToSend.videos);
 
-                const backendResponse = await fetch("http://localhost:8000/api/youtube", {
+                const backendResponse = await fetch(fullUrl, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
