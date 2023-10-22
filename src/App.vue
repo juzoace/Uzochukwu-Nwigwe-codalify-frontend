@@ -3,12 +3,15 @@
     <h1>YouTube Channel Finder</h1>
     <form @submit.prevent="fetchData">
       <div>
+        
         <label for="channelName"></label>
         <input v-model="channelName" type="text" id="channelName" required />
       </div>
       <button type="submit" class="watch-video-button">Fetch Channel</button>
       <button type="button" @click="clearData" class="clear-button">Clear Data</button>
     </form>
+
+    <div class="instruction">Type a name of a valid youtube channel. e.g google or game</div>
 
     <div v-if="isLoading">
       <Spinner />
@@ -115,6 +118,10 @@ export default {
 
 <style scoped>
 /* ... (previous styles) ... */
+
+.instruction{
+  text-align: center;
+}
 
 .clear-button {
   background-color: #e53e3e;
